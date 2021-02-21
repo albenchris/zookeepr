@@ -42,14 +42,28 @@ function filterByQuery(query, animalsArr) {
         filteredResults = filteredResults.filter(animal => animal.name === query.name);
     }
     return filteredResults;
-}
+};
 
-app.get('/api/animals', (req, res) => {
+function findById(id, animalsArr) {
+    const result = animalsArr.filter(animal => animal.id === id)[0];
+    return result;
+};
+
+app.get('/api/animals/', (req, res) => {
     let results = animals;
     if (req.query) {
         results = filterByQuery(req.query, results);
     }
     res.json(results);
+});
+
+app.get('/api/animals/:id', (req, res) => {
+    const result = findById(req.params.id, animals);
+    if (result) {
+        res.json(result);
+    } else {
+        res.sendStatus(404);
+    }
 });
 
 app.listen(PORT, () => {
