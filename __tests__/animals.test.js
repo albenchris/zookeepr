@@ -1,4 +1,3 @@
-// const fs = require("fs");
 const {
     filterByQuery,
     findById,
@@ -75,7 +74,7 @@ test("validates personality traits", () => {
         personalityTraits: ["quirky", "rash"]
     };
 
-    const invaliAnimal = {
+    const invalidAnimal = {
         id: "3",
         name: "Erica",
         species: "gorilla",
@@ -83,7 +82,7 @@ test("validates personality traits", () => {
     };
 
     const result = validateAnimal(animal);
-    const result2 = validateAnimal(invaliAnimal);
+    const result2 = validateAnimal(invalidAnimal);
 
     expect(result).toBe(true);
     expect(result2).toBe(false);
